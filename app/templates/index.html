@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Handwriting Recognizer</title>
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --card-bg: #ffffff;
+  --accent : #4f46e5;          /* indigo */
+  --accent-light: #eef2ff;
+  --border: 1px solid #e0e0e0;
+  --radius: 14px;
+  --shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;font-family:"Inter",sans-serif}
+
+body{
+  margin:0;padding:40px;
+  background:linear-gradient(135deg,#fdfbfb,#ebedee);
+  display:flex;flex-direction:column;align-items:center;gap:32px
+}
+h1{margin:0 0 8px;font-weight:600;color:#333}
+
+.wrapper{display:flex;flex-wrap:wrap;gap:32px;justify-content:center}
+
+.card{
+  background:var(--card-bg);border:var(--border);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);width:320px;display:flex;flex-direction:column;align-items:center
+}
+.card h2{margin:0 0 16px;font-size:1.1rem;color:#444;font-weight:600}
+canvas,img{border:var(--border);border-radius:8px;width:280px;height:280px;background:#fff}
+button{
+  margin:10px 6px;padding:10px 22px;font-size:.95rem;
+  border:none;border-radius:8px;cursor:pointer;font-weight:600;
+  background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15);
+  transition:.15s;
+}
+button:hover{background:#4338ca}
+button.light{background:#e5e7eb;color:#333}
+.pred{margin-top:12px;font-size:1.2rem;height:1.8rem;color:var(--accent);font-weight:600}
+#preview{display:none;object-fit:contain}
+</style>
+</head>
+<body>
+<h1>Handwriting Digit/Character Recognizer</h1>
+
+<div class="wrapper">
+
+  <!-- Canvas card -->
+  <div class="card">
+    <h2>Draw Here ✍️</h2>
+    <canvas id="draw" width="280" height="280"></canvas>
+    <div>
+      <button id="clearBtn" class="light">Clear</button>
+      <button id="predictCanvasBtn">Predict</button>
+    </div>
+    <div id="canvasResult" class="pred"></div>
+  </div>
+
+  <!-- Upload card -->
+  <div class="card">
+    <h2>Or Upload 📂</h2>
+    <img id="preview" width="280" height="280" alt="preview">
+    <input type="file" id="fileInput" accept="image/*" hidden>
+    <button id="uploadBtn">Upload & Predict</button>
+    <div id="uploadResult" class="pred"></div>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
