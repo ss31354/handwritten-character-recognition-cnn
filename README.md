@@ -13,6 +13,7 @@ The model is trained using the **EMNIST dataset** and deployed with a **Flask we
 - Flask web interface
 - Image preprocessing pipeline
 - Canvas where you draw to predict the digit/letter
+- ![Demo](demo.png)
 
 
 ---
